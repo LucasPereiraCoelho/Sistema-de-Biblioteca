@@ -10,41 +10,35 @@
         img{height: 100px;
             width: 100px;
         }
+
+        .nav{
+          color: white;
+        }
     </style>
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand nav" href="{% url 'home' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      
+    </div>
+  </nav>
 
-      <div class="container m-5">
+    <div class="container m-7 mt-3">
     <table class="table">
         <thead>
           <tr>
             <th scope="col">Nome</th>
             <th scope="col">Genêro</th>
-            <th scope="col">Quantia de Livros</th>
-            <th scope="col">Quantia de página</th>
             <th scope="col">Capa</th>
             <th scope="col">Autor</th>
           </tr>
@@ -52,10 +46,8 @@
         <tbody>
             {% for book in books %}
           <tr>
-            <td>{{ book.name }}</td>
+            <td><a href="{% url 'book-detail' book.id %}">{{ book.name }}</a></td>
             <td>{{ book.gender }}</td>
-            <td>{{ book.qtd_books }}</td>
-            <td>{{ book.qtd_pages }}</td>
             <td><img src="{{book.cover.url}}" alt=""></td>
             <td>{{ book.author }}</td>
           </tr>
