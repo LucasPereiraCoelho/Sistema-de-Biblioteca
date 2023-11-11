@@ -57,8 +57,8 @@
           </tbody>
         </table>
 
-        <a class="btn btn-danger" role="button">Remover Produto</a>
-        <a class="btn btn-success" role="button">Vender Unidade</a>
+        <a class="btn btn-danger" href="{% url 'delete-book' book.id %}" role="button">Remover Livro</a>
+        <a class="btn btn-success" href="{% url 'rent-book' book.id %}"role="button">Alugar Livro</a>
         <!-- Fazer lógica dos botões acima. -->
       </div>
       

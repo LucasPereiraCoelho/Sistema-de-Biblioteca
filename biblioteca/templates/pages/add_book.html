@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      
+    </div>
+  </nav>
+
+    <form method="POST" enctype="multipart/form-data" class="container mt-5"> {% csrf_token %}
+        <input class= "form-control my-1" type="text" name="name" placeholder="Nome">
+        <select class= "form-control my-1" name="gender" id="">
+            {% for gender in genders%}
+            <option value="{{gender.id}}">{{ gender.name }}</option>
+            {% endfor %}
+        </select>
+        <input class= "form-control my-1" type="text" name="qtd_books" placeholder="Quantidade de Livors">
+        <input class= "form-control my-1" type="text" name="qtd_pages" placeholder="Quantidade de Páginas">
+        <input class= "form-control my-1" type="file" name="cover" placeholder="Imagem">
+        <input class= "form-control my-1" type="text" name="author" placeholder="Autor">
+        <button type="submit" class="btn btn-success mt-2">Salvar</button>
+    </form>
+    
+</body>
+</html>
