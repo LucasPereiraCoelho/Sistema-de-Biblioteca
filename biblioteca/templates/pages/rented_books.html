@@ -24,14 +24,7 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <div class="d-flex">
-          <h5><a class="btn btn-success me-2" href="{% url 'home' %}">Home</a></h5>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="btn btn-success me-2" href="{% url 'rented-books' %}">Livros emprestados</a>
-            </li>
-          </ul>
-        </div>
+      <h5><a class="navbar nav" href="{% url 'home' %}">Home</a></h5>
 
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -58,15 +51,18 @@
         </thead>
         <tbody>
             {% for book in books %}
-          <tr>
-            <td><a href="{% url 'book-detail' book.id %}">{{ book.name }}</a></td>
-            <td>{{ book.gender }}</td>
-            <td><img src="{{book.cover.url}}" alt=""></td>
-            <td>{{ book.author }}</td>
-          </tr>
+              <tr>
+                <td><a href="{% url 'book-detail' id=book.id %}">{{ book.name }}</a></td>
+                <td>{{ book.gender }}</td>
+                <td><img src="{{ book.cover.url }}" alt=""></td>
+                <td>{{ book.author }}</td>
+                <td>
+                  <a class="btn btn-primary" href="{% url 'return-book' id=book.id %}">Devolver Livro</a>
+                </td>
+              </tr>
             {% endfor %}
         </tbody>
+        
       </table>
-
-
+      
       </div>
