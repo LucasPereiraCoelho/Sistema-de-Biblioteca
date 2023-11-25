@@ -15,8 +15,8 @@ class Books(models.Model):
 
     name = models.CharField(max_length=255)
     gender = models.ForeignKey(Genders, on_delete=models.CASCADE)
-    qtd_books = models.IntegerField() 
-    qtd_pages = models.IntegerField()                              
+    qtd_books = models.IntegerField(default=0) 
+    qtd_pages = models.IntegerField(default=0)                              
     cover = models.ImageField(blank=False)
     author = models.CharField(max_length=255)
     in_stock = models.BooleanField(default=False)

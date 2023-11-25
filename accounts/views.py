@@ -20,3 +20,16 @@ def user_login(request):
     
     else:
         return render(request, 'pages/login.html')
+    
+def user_register(request):
+    if request.method == 'POST':
+        user = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        repeatPassword = request.POST.get('repeat-password')
+
+        User.objects.create_user(username=user, email=email, password=password)
+
+        return redirect('login')
+    else:
+        return render(request, 'pages/register.html')

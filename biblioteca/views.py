@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Books, Genders
 from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 
 # Create your views here.
 
@@ -17,6 +18,10 @@ def book_detail(request, id):
     book = Books.objects.get(id=id)
     return render(request, 'pages/book_detail.html', {'book':book})
 
+def user_logout(request):
+    auth.logout(request)
+    return redirect('login')
+
 def add_book(request):
 
     if request.method == 'POST':
@@ -29,8 +34,13 @@ def add_book(request):
         in_stock = True
   
         Books.objects.create(
-            name=name, gender_id=gender, qtd_books=qtd_books, qtd_pages=qtd_pages,
-            cover=cover, author=author, in_stock=in_stock
+            name=name, 
+            gender_id=gender, 
+            qtd_books=qtd_books, 
+            qtd_pages=qtd_pages,
+            cover=cover, 
+            author=author, 
+            in_stock=in_stock
         )
 
         return redirect('home')
