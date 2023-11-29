@@ -63,13 +63,14 @@ def rent_book(request, id):
         book_id=id
         )
     
-    send_email(f"A Biblioteca do Senac informa, \nFoi confirmado seu emprestimo do livro {book.name} realizado no dia {datetime.now()}", request.user.email)
 
     if book.qtd_books == 0:
         book.in_stock = False
     if book.qtd_books < 0:
         book.qtd_books = 0
+
     book.save()
+    send_email(f"A Biblioteca do Senac informa, \nFoi confirmado seu emprestimo do livro {book.name} realizado no dia {datetime.now()}", request.user.email)
     return redirect ('book-detail', id)
 
 def stockless(request):
