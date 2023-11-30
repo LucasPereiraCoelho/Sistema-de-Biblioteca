@@ -23,6 +23,11 @@ def user_logout(request):
     auth.logout(request)
     return redirect('login')
 
+def search_book(request):
+    q = request.GET.get('q')
+    books = Books.objects.filter(name__icontains=q, in_stock=True)
+    return render(request, 'pages/index.html', {'books':books})
+
 def add_book(request):
 
     if request.method == 'POST':
@@ -91,23 +96,11 @@ def return_book(request, id):
 
     books = RentedBooks.objects.filter(user=request.user, returned=False)
     
-    # Marcar os livros como devolvidos
     for livroEmprestado in books:
         livroEmprestado.returned = True
         livroEmprestado.save()
 
     book.save()
-
-
-    
-    # Renderizar a página com os livros devolvidos
     render(request, 'pages/rented_books.html', {'books': books})
     return redirect('home')
     
-
-    # livrosEmprestados = RentedBooks.objects.get(user_id=request.user.id)
-    # livrosEmprestados.returned = True
-    
-    # livrosEmprestados.save()
-    # book.save()
-    # return redirect('home')

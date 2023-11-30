@@ -10,7 +10,6 @@ urlpatterns = [
     path('add-book/', views.add_book, name='add-book'),
     path('user-logout/', views.user_logout, name='user-logout'),
     path('rented-books/', views.rented_books, name='rented-books'),
-    path('return-book/<int:id>/', views.return_book, name='return-book')
-    
-
+    path('return-book/<int:id>/', views.return_book, name='return-book'),
+    path('search-book/', views.search_book, name='search-book')
 ]

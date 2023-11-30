@@ -3,7 +3,7 @@ from email.message import EmailMessage
 
 def send_email(message_text, recipient_email):
     EMAIL = 'lucascoelho441@gmail.com'
-    PASSWORD = 'pijrdmkvsmhusxkk'
+    PASSWORD = ''
 
     msg = EmailMessage()
 
