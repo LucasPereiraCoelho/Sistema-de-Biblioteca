@@ -49,23 +49,25 @@
     </div>
   </nav>
 
-  {% if request.user.is_superuser %}
-    <a class="btn btn-primary me-2" href="{% url 'add-book' %}" role="button">Adicionar Livro</a>
-  {% endif %}
+  <div class="container mt-5">
+    {% if request.user.is_superuser %}
+     <a class="btn btn-primary mx-3 mb-2" href="{% url 'add-book' %}" role="button">Adicionar Livro</a>
+    {% endif %}
+  
+    <div class="d-flex flex-wrap">
+        {% for book in books %}
+            <div class="card mb-4 mx-3" style="width: 18rem;">
+                <a href="{% url 'book-detail' book.id %}">
+                    <img src="{{ book.cover.url }}" class="card-img-top" alt="Book Image">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-name">{{ book.name }}</h5>
+                    <p class="card-gender">{{ book.gender }}</p>
+                    <p class="card-author">{{ book.author }}</p>
+                </div>
+                <a href="{% url 'book-detail' book.id %}" class="btn btn-primary">Detalhes</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
-
-  <div class="d-flex container m-7 mt-3">
-    {% for book in books %}
-      <div class="card mb-4 mx-3" style="width: 18rem;">
-        <a href="{% url 'book-detail' book.id %}">
-          <img src="{{ book.cover.url }}" class="card-img-top" alt="Book Image">
-        </a>
-        <div class="card-body">
-          <h5 class="card-name">{{ book.name }}</h5>
-          <p class="card-gender">{{ book.gender }}</p>
-          <p class="card-author">{{ book.author }}</p>
-        </div>
-        <a href="{% url 'book-detail' book.id %}" class="btn btn-primary">Detalhes</a>
-      </div>
-    {% endfor %}
-  </div>
