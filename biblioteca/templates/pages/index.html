@@ -49,6 +49,11 @@
     </div>
   </nav>
 
+  {% if request.user.is_superuser %}
+    <a class="btn btn-primary me-2" href="{% url 'add-book' %}" role="button">Adicionar Livro</a>
+  {% endif %}
+
+
   <div class="d-flex container m-7 mt-3">
     {% for book in books %}
       <div class="card mb-4 mx-3" style="width: 18rem;">

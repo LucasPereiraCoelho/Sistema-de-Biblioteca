@@ -57,7 +57,9 @@
           </tbody>
         </table>
 
-        <a class="btn btn-danger" href="{% url 'delete-book' book.id %}" role="button">Remover Livro</a>
+        {% if request.user.is_superuser %}
+          <a class="btn btn-danger" href="{% url 'delete-book' book.id %}" role="button">Remover Livro</a>
+        {% endif %}
         <a class="btn btn-success" href="{% url 'rent-book' book.id %}"role="button">Alugar Livro</a>
         <!-- Fazer lógica dos botões acima. -->
       </div>
