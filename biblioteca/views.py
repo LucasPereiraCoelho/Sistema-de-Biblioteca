@@ -92,15 +92,19 @@ def rented_books(request):
 
 def return_book(request, id):
     book = Books.objects.get(id=id)
+    if not book.in_stock:
+        book.in_stock = True
     book.qtd_books += 1
-
-    books = RentedBooks.objects.filter(user=request.user, returned=False)
-    
-    for livroEmprestado in books:
-        livroEmprestado.returned = True
-        livroEmprestado.save()
-
     book.save()
-    render(request, 'pages/rented_books.html', {'books': books})
+
+    rented_books = RentedBooks.objects.filter(book_id=id, user=request.user, returned=False)
+    
+    if rented_books.exists():
+        rented_book = rented_books.first()
+        rented_book.returned = True
+        rented_book.save()
+    
     return redirect('home')
+
+
     

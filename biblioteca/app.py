@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 from credentials import EMAIL, PASSWORD
 
+
 def send_email(message_text, recipient_email):
 
 
