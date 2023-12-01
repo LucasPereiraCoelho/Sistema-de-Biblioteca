@@ -97,12 +97,9 @@ def return_book(request, id):
     book.qtd_books += 1
     book.save()
 
-    rented_books = RentedBooks.objects.filter(book_id=id, user=request.user, returned=False)
-    
-    if rented_books.exists():
-        rented_book = rented_books.first()
-        rented_book.returned = True
-        rented_book.save()
+    rented_book = RentedBooks.objects.get(book_id=id, user=request.user, returned=False)
+    rented_book.returned = True
+    rented_book.save()
     
     return redirect('home')
 
